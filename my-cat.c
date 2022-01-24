@@ -2,8 +2,8 @@
 #include <errno.h>
 #include <string.h>
 #include <stdlib.h>
+#include <limits.h>
 
-#define MAX_LINE_LENGTH 100000 // Largest number of characters read from a single line
 
 
 void cat_file(char* filepath);
@@ -30,11 +30,11 @@ void cat_file(char* filepath) {
     }
     // File successfully opened for reading
     // Printing to screen with a 1-line buffer
-    char line_buffer[MAX_LINE_LENGTH];
-    char* ret = fgets(line_buffer, MAX_LINE_LENGTH, file);
+    char line_buffer[UINT_MAX];
+    char* ret = fgets(line_buffer, UINT_MAX, file);
     while (ret != NULL) {
         printf("%s", ret);
-        ret = fgets(line_buffer, MAX_LINE_LENGTH, file);
+        ret = fgets(line_buffer, UINT_MAX, file);
     }
 }
 
